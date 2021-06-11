@@ -1,47 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Media;
+using System.Windows.Forms;
 
 namespace Inertia__new_
 {
-    public partial class Form1 : Form
+    public partial class Inertia : Form
     {
         public string direction;
         public int playerXlocation;
         public int playerYlocation;
         public int playerPreviousXlocation;
         public int playerPreviousYlocation;
-        public bool currentDirection = true;
+        public bool checkStation = false;
+        int index;
         protected PictureBox[] pictureBoxes;
+       
+        int score;
+        int steps;
+        int lives=10;
 
-        public Form1()
+        public Inertia()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            timer1.Enabled = true;
+            timer2.Enabled = true;
+            timer1.Interval =1000;
+            timer2.Interval =1000;
+          
             GenerateMap();
             Play();
             this.KeyDown += new KeyEventHandler(keyisup);
 
-        }
-        Level_1 level = new Level_1();
 
-        public  Player playerOnThemap = new Player();
+        }
+        Level_2 level = new Level_2();
+
+        public Player playerOnThemap = new Player();
 
         static void Play()
         {
             SoundPlayer music = new SoundPlayer(@"../../../../Fear.wav");
             music.PlayLooping();
-        }
-        static void PlayBeep()
-        {
-            SoundPlayer music = new SoundPlayer(@"../../../../beep.wav");
-            music.Play();
         }
         public void GenerateMap()
         {
@@ -85,80 +86,82 @@ namespace Inertia__new_
                         pictureBoxes[k].Name = "player";
                         pictureBoxes[k].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
                         pictureBoxes[k].SizeMode = PictureBoxSizeMode.Zoom;
+                        index = k;
                         playerXlocation = pictureBoxes[k].Location.X;
                         playerYlocation = pictureBoxes[k].Location.Y;
                     }
-                
+
                     this.Controls.Add(pictureBoxes[k]); k++;
 
                 }
             }
-        
 
 
-        //for (int i = 0; i <= level.height; i++)
-        //{
-        //    PictureBox pic = new PictureBox();
-        //    pic.BackColor = Color.Black;
-        //    pic.Location = new Point(0, 60 * i);
-        //    pic.Size = new Size(level.width * 60, 1);
-        //    this.Controls.Add(pic);
-        //}
-        //for (int i = 0; i <= level.width; i++)
-        //{
-        //    PictureBox pic = new PictureBox();
-        //    pic.BackColor = Color.Black;
-        //    pic.Location = new Point(60 * i, 0);
-        //    pic.Size = new Size(1, level.height * 60);
-        //    this.Controls.Add(pic);
-        //}
 
-    }
+            //for (int i = 0; i <= level.height; i++)
+            //{
+            //    PictureBox pic = new PictureBox();
+            //    pic.BackColor = Color.Black;
+            //    pic.Location = new Point(0, 60 * i);
+            //    pic.Size = new Size(level.width * 60, 1);
+            //    this.Controls.Add(pic);
+            //}
+            //for (int i = 0; i <= level.width; i++)
+            //{
+            //    PictureBox pic = new PictureBox();
+            //    pic.BackColor = Color.Black;
+            //    pic.Location = new Point(60 * i, 0);
+            //    pic.Size = new Size(1, level.height * 60);
+            //    this.Controls.Add(pic);
+            //}
+
+        }
         private void keyisup(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up)
             {
-               direction = "Up";
+                direction = "Up";
                 ChangeCoordinates();
             }
             if (e.KeyCode == Keys.Down)
             {
-               direction = "Down";
-             ChangeCoordinates();
+                direction = "Down";
+                ChangeCoordinates();
             }
             if (e.KeyCode == Keys.Left)
             {
-               direction = "Left";
+                direction = "Left";
                 ChangeCoordinates();
 
             }
             if (e.KeyCode == Keys.Right)
             {
-              direction = "Right";
-              ChangeCoordinates();
+                direction = "Right";
+                ChangeCoordinates();
 
 
             }
             if (e.KeyCode == Keys.D)
             {
-               direction = "DiagonalUpRight";
-               ChangeCoordinates();
+                direction = "DiagonalUpRight";
+                ChangeCoordinates();
             }
             if (e.KeyCode == Keys.F)
             {
-                playerOnThemap.direction = "DiagonalDownRight";
-                playerOnThemap.ChangeCoordinates();
+               direction = "DiagonalDownRight";
+               ChangeCoordinates();
             }
             if (e.KeyCode == Keys.G)
             {
-                playerOnThemap.direction = "DiagonalUpLeft";
-                playerOnThemap.ChangeCoordinates();
+               direction = "DiagonalUpLeft";
+               ChangeCoordinates();
             }
             if (e.KeyCode == Keys.H)
             {
-                playerOnThemap.direction = "DiagonalDownLeft";
-                playerOnThemap.ChangeCoordinates();
+              direction = "DiagonalDownLeft";
+             ChangeCoordinates();
             }
+
             LogicForElements();
             LogicForPlayer();
 
@@ -167,8 +170,9 @@ namespace Inertia__new_
         }
         public void LogicForPlayer()
         {
-              pictureBoxes[23].Location = new Point(playerXlocation, playerYlocation);
-              pictureBoxes[23].Visible = true;
+            pictureBoxes[index].Location = new Point(playerXlocation, playerYlocation);
+            pictureBoxes[index].Visible = true;
+     
         }
         public bool LogicForElements()
         {
@@ -178,145 +182,191 @@ namespace Inertia__new_
             {
                 if ((string)x.Tag == "coins")
                 {
-                    if (pictureBoxes[23].Bounds.IntersectsWith(x.Bounds))
+                    if (pictureBoxes[index].Bounds.IntersectsWith(x.Bounds))
                     {
+                        if (x.Visible != false)
+                        {
+                            score++;
+                        }
+                        checkStation = false;
                         x.Visible = false;
+                       
                     }
                 }
                 if ((string)x.Tag == "station")
                 {
-                    if (pictureBoxes[23].Bounds.IntersectsWith(x.Bounds))
-                    {
-                        pictureBoxes[23].Location = new Point(x.Location.X, x.Location.Y);
-                        //direction = "Stop";
-                
-                    }
+                    //if (pictureBoxes[23].Bounds.IntersectsWith(x.Bounds))
+                    //{
+                        if (pictureBoxes[index].Location == x.Location)
+                        {
+                            direction = "Stop";
+                        }
+                      
+                        //pictureBoxes[23].Location = new Point(x.Location.X, x.Location.Y);
+                        //return true;
+
+                    //}
                 }
-                if ((string)x.Tag == "barrier" || (string)x.Tag == "trap")
+                if ((string)x.Tag == "barrier")
                 {
-                    if (pictureBoxes[23].Bounds.IntersectsWith(x.Bounds))
+                    if (pictureBoxes[index].Bounds.IntersectsWith(x.Bounds))
                     {
-                        PlayBeep();
                         direction = "Stop";
                         return true;
-                   
-      
                     }
                 }
-              
+                if ((string)x.Tag == "trap")
+                {
+                    if (pictureBoxes[index].Bounds.IntersectsWith(x.Bounds))
+                    {
+                        lives--;
+                        direction = "Stop";
+                        return true;
+                    }
+                }
+
+
 
             }
-     
+
             return false;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public void ChangeCoordinates()
         {
-           
-                    if (direction == "Right")
-                    {
-                        while (LogicForElements() != true)
-                        {
-                            playerPreviousXlocation = playerXlocation;
-                            playerPreviousYlocation = playerYlocation;
-                            playerXlocation += 60;
-                        }
 
-                    }
-                    if (direction == "Left")
-                    {
-                        while (LogicForElements() != true)
-                        {
-                            playerPreviousXlocation = playerXlocation;
-                            playerPreviousYlocation = playerYlocation;
-                            playerXlocation -= 60;
+            if (direction == "Right")
+            {
+                while (LogicForElements() != true && checkStation == false)
+                {
+                    playerPreviousXlocation = playerXlocation;
+                    playerPreviousYlocation = playerYlocation;
+                    playerXlocation += 60;
+                    steps++;
+                }
 
-                        }
-                    }
-                    if (direction == "Up")
-                    {
-                        while (LogicForElements() != true)
-                        {
-                            playerPreviousXlocation = playerXlocation;
-                            playerPreviousYlocation = playerYlocation;
-                            playerYlocation -= 60;
-                        }
-                    }
-                    if (direction == "Down")
-                    {
-                        while (LogicForElements() != true)
-                        {
-                            playerPreviousXlocation = playerXlocation;
-                            playerPreviousYlocation = playerYlocation;
-                            playerYlocation += 60;
-                        }
-                    }
-                    if (direction == "DiagonalUpRight")
-                    {
-                        while (LogicForElements() != true)
-                        {
-                            playerPreviousXlocation = playerXlocation;
-                            playerPreviousYlocation = playerYlocation;
-                            playerXlocation -= 60;
-                            playerYlocation += 60;
-                        }
-                    }
-                    if (direction == "DiagonalDownRight")
-                    {
-                        while (LogicForElements() != true)
-                        {
-                            playerPreviousXlocation = playerXlocation;
-                            playerPreviousYlocation = playerYlocation;
-                            playerYlocation -= 60;
-                            playerXlocation += 60;
-                        }
-                    }
-                    if (direction == "DiagonalUpLeft")
-                    {
-                        while (LogicForElements() != true)
-                        {
-                            playerPreviousXlocation = playerXlocation;
-                            playerPreviousYlocation = playerYlocation;
-                            playerXlocation -= 60;
-                            playerYlocation -= 60;
-                        }
-                    }
-                    if (direction == "DiagonalDownLeft")
-                    {
-                        while (LogicForElements() != true)
-                        {
-                            playerPreviousXlocation = playerXlocation;
-                            playerPreviousYlocation = playerYlocation;
-                            playerXlocation += 60;
-                            playerYlocation += 60;
-                        }
-                    }
-                    if (direction == "Stop")
-                    {
-                        playerXlocation = playerPreviousXlocation;
-                        playerYlocation = playerPreviousYlocation;
+            }
+            if (direction == "Left")
+            {
+                while (LogicForElements() != true && checkStation == false)
+                {
+                    playerPreviousXlocation = playerXlocation;
+                    playerPreviousYlocation = playerYlocation;
+                    playerXlocation -= 60;
+                    steps++;
+                }
+            }
+            if (direction == "Up" && checkStation == false)
+            {
+                while (LogicForElements() != true)
+                {
+                    playerPreviousXlocation = playerXlocation;
+                    playerPreviousYlocation = playerYlocation;
+                    playerYlocation -= 60; steps++;
+                }
+            }
+            if (direction == "Down" )
+            {
+                while (LogicForElements() != true && checkStation == false)
+                {
+                    playerPreviousXlocation = playerXlocation;
+                    playerPreviousYlocation = playerYlocation;
+                    playerYlocation += 60; steps++;
+                }
+            }
+            if (direction == "DiagonalUpRight")
+            {
+                while (LogicForElements() != true)
+                {
+                    playerPreviousXlocation = playerXlocation;
+                    playerPreviousYlocation = playerYlocation;
+                    playerXlocation -= 60;
+                    playerYlocation += 60; steps++;
+                }
+            }
+            if (direction == "DiagonalDownRight")
+            {
+                while (LogicForElements() != true)
+                {
+                    playerPreviousXlocation = playerXlocation;
+                    playerPreviousYlocation = playerYlocation;
+                    playerYlocation -= 60;
+                    playerXlocation += 60; steps++;
+                }
+            }
+            if (direction == "DiagonalUpLeft")
+            {
+                while (LogicForElements() != true)
+                {
+                    playerPreviousXlocation = playerXlocation;
+                    playerPreviousYlocation = playerYlocation;
+                    playerXlocation -= 60;
+                    playerYlocation -= 60; steps++;
+                }
+            }
+            if (direction == "DiagonalDownLeft")
+            {
+                while (LogicForElements() != true)
+                {
+                    playerPreviousXlocation = playerXlocation;
+                    playerPreviousYlocation = playerYlocation;
+                    playerXlocation += 60;
+                    playerYlocation += 60; steps++;
+                }
+            }
+            if (direction == "Stop")
+            {
+                playerXlocation = playerPreviousXlocation;
+                playerYlocation = playerPreviousYlocation;
 
-                    }
+            }
+          
+        }
+        public void CheckLives()
+        {
+            if (lives <= 0)
+            {
+                this.Close();
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            CheckLives();
+            label2.AutoSize = true;
+            label2.Text = $"{score}";
+
+            label4.AutoSize = true;
+            label4.Text = $"{steps}";
+
+            label6.AutoSize = true;
+            label6.Text = $"{lives}";
+
+            Controls.Add(label2);
+            Controls.Add(label4);
+            Controls.Add(label6);
+        }
+        bool CheckScore()
+        {
+            if(score >= 15)
+            {
+                Controls.Clear();
+                Label label = new Label();
+                label.Text = "YOU WIN!   " + $"YOUR SCORE:  {score}";
+                label.AutoSize = true;
+                label.Location = new Point(222, 90);
+                label.Font = new Font("Calibri", 18);
+                label.Padding = new Padding(20);
+                label.Visible = true;
+                label.BackColor = Color.AliceBlue;
+                Controls.Add(label);
+                return true;
+            }
+            return false;
+        }
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (CheckScore()) { timer1.Enabled = false; }
         }
     }
-    
-
-
-
-
 
     
 }

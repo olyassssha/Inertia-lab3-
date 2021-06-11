@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Inertia__new_
 {
-    class Logic : Form1
+    class Logic : Inertia
     {
       
     }
