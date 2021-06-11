@@ -8,17 +8,18 @@ namespace Inertia__new_
     public partial class Inertia : Form
     {
         public string direction;
-        public int playerXlocation;
-        public int playerYlocation;
-        public int playerPreviousXlocation;
-        public int playerPreviousYlocation;
-        public bool checkStation = false;
-        int index;
-        protected PictureBox[] pictureBoxes;
-       
+      
+        int indexI;
+        int indexJ;
+
+        int indexForCheckI;
+        int indexForCheckj;
+
+        protected PictureBox[,] pictureBoxes;
+
         int score;
         int steps;
-        int lives=10;
+        int lives = 10;
 
         public Inertia()
         {
@@ -26,16 +27,16 @@ namespace Inertia__new_
             this.WindowState = FormWindowState.Maximized;
             timer1.Enabled = true;
             timer2.Enabled = true;
-            timer1.Interval =1000;
-            timer2.Interval =1000;
-          
+            timer1.Interval = 1000;
+            timer2.Interval = 1000;
+
             GenerateMap();
             Play();
             this.KeyDown += new KeyEventHandler(keyisup);
 
 
         }
-        Level_2 level = new Level_2();
+        Level_1 level = new Level_1();
 
         public Player playerOnThemap = new Player();
 
@@ -47,73 +48,60 @@ namespace Inertia__new_
         public void GenerateMap()
         {
             playerOnThemap.MakeMap(level);
-            pictureBoxes = new PictureBox[level.height * level.width];
-            int k = 0;
+            pictureBoxes = new PictureBox[level.height, level.width];
+
             for (int i = 0; i < level.height; i++)
             {
                 for (int j = 0; j < level.width; j++)
                 {
-                    pictureBoxes[k] = new PictureBox();
-                    pictureBoxes[k].Location = new Point(60 * j, i * 60);
-                    pictureBoxes[k].Size = new Size(54, 36);
+                    pictureBoxes[i, j] = new PictureBox();
+                    pictureBoxes[i, j].Location = new Point(60 * j, i * 60);
+                    pictureBoxes[i, j].Size = new Size(54, 36);
 
                     if (level.arrayOfObjects[i, j].GetType() == typeof(Trap))
                     {
-                        pictureBoxes[k].Tag = "trap";
-                        pictureBoxes[k].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
-                        pictureBoxes[k].SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBoxes[i, j].Tag = "trap";
+                        pictureBoxes[i, j].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
+                        pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     if (level.arrayOfObjects[i, j].GetType() == typeof(Barrier))
                     {
-                        pictureBoxes[k].Tag = "barrier";
-                        pictureBoxes[k].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
-                        pictureBoxes[k].SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBoxes[i, j].Tag = "barrier";
+                        pictureBoxes[i, j].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
+                        pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     if (level.arrayOfObjects[i, j].GetType() == typeof(Station))
                     {
-                        pictureBoxes[k].Tag = "station";
-                        pictureBoxes[k].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
-                        pictureBoxes[k].SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBoxes[i, j].Tag = "station";
+                        pictureBoxes[i, j].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
+                        pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;
                     }
                     if (level.arrayOfObjects[i, j].GetType() == typeof(Coins))
                     {
-                        pictureBoxes[k].Tag = "coins";
-                        pictureBoxes[k].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
-                        pictureBoxes[k].SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBoxes[i, j].Tag = "coins";
+                        pictureBoxes[i, j].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
+                        pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                    if (level.arrayOfObjects[i, j].GetType() == typeof(Space))
+                    {
+                        pictureBoxes[i, j].Tag = "space";
+
                     }
                     if (level.arrayOfObjects[i, j].GetType() == typeof(Player))
                     {
-                        pictureBoxes[k].Name = "player";
-                        pictureBoxes[k].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
-                        pictureBoxes[k].SizeMode = PictureBoxSizeMode.Zoom;
-                        index = k;
-                        playerXlocation = pictureBoxes[k].Location.X;
-                        playerYlocation = pictureBoxes[k].Location.Y;
+                        pictureBoxes[i, j].Name = "player";
+                        pictureBoxes[i, j].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
+                        pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;
+                        indexI = i;
+                        indexJ = j;
+                        indexForCheckI = i;
+                        indexForCheckj = j;
                     }
 
-                    this.Controls.Add(pictureBoxes[k]); k++;
+                    this.Controls.Add(pictureBoxes[i, j]);
 
                 }
             }
-
-
-
-            //for (int i = 0; i <= level.height; i++)
-            //{
-            //    PictureBox pic = new PictureBox();
-            //    pic.BackColor = Color.Black;
-            //    pic.Location = new Point(0, 60 * i);
-            //    pic.Size = new Size(level.width * 60, 1);
-            //    this.Controls.Add(pic);
-            //}
-            //for (int i = 0; i <= level.width; i++)
-            //{
-            //    PictureBox pic = new PictureBox();
-            //    pic.BackColor = Color.Black;
-            //    pic.Location = new Point(60 * i, 0);
-            //    pic.Size = new Size(1, level.height * 60);
-            //    this.Controls.Add(pic);
-            //}
 
         }
         private void keyisup(object sender, KeyEventArgs e)
@@ -132,14 +120,11 @@ namespace Inertia__new_
             {
                 direction = "Left";
                 ChangeCoordinates();
-
             }
             if (e.KeyCode == Keys.Right)
             {
                 direction = "Right";
                 ChangeCoordinates();
-
-
             }
             if (e.KeyCode == Keys.D)
             {
@@ -148,189 +133,397 @@ namespace Inertia__new_
             }
             if (e.KeyCode == Keys.F)
             {
-               direction = "DiagonalDownRight";
-               ChangeCoordinates();
+                direction = "DiagonalDownRight";
+                ChangeCoordinates();
             }
             if (e.KeyCode == Keys.G)
             {
-               direction = "DiagonalUpLeft";
-               ChangeCoordinates();
+                direction = "DiagonalUpLeft";
+                ChangeCoordinates();
             }
             if (e.KeyCode == Keys.H)
             {
-              direction = "DiagonalDownLeft";
-             ChangeCoordinates();
+                direction = "DiagonalDownLeft";
+                ChangeCoordinates();
             }
 
-            LogicForElements();
-            LogicForPlayer();
-
-
-
-        }
-        public void LogicForPlayer()
-        {
-            pictureBoxes[index].Location = new Point(playerXlocation, playerYlocation);
-            pictureBoxes[index].Visible = true;
-     
-        }
-        public bool LogicForElements()
-        {
-            LogicForPlayer();
-
-            foreach (PictureBox x in pictureBoxes)
-            {
-                if ((string)x.Tag == "coins")
-                {
-                    if (pictureBoxes[index].Bounds.IntersectsWith(x.Bounds))
-                    {
-                        if (x.Visible != false)
-                        {
-                            score++;
-                        }
-                        checkStation = false;
-                        x.Visible = false;
-                       
-                    }
-                }
-                if ((string)x.Tag == "station")
-                {
-                    //if (pictureBoxes[23].Bounds.IntersectsWith(x.Bounds))
-                    //{
-                        if (pictureBoxes[index].Location == x.Location)
-                        {
-                            direction = "Stop";
-                        }
-                      
-                        //pictureBoxes[23].Location = new Point(x.Location.X, x.Location.Y);
-                        //return true;
-
-                    //}
-                }
-                if ((string)x.Tag == "barrier")
-                {
-                    if (pictureBoxes[index].Bounds.IntersectsWith(x.Bounds))
-                    {
-                        direction = "Stop";
-                        return true;
-                    }
-                }
-                if ((string)x.Tag == "trap")
-                {
-                    if (pictureBoxes[index].Bounds.IntersectsWith(x.Bounds))
-                    {
-                        lives--;
-                        direction = "Stop";
-                        return true;
-                    }
-                }
-
-
-
-            }
-
-            return false;
         }
         public void ChangeCoordinates()
         {
 
             if (direction == "Right")
             {
-                while (LogicForElements() != true && checkStation == false)
-                {
-                    playerPreviousXlocation = playerXlocation;
-                    playerPreviousYlocation = playerYlocation;
-                    playerXlocation += 60;
-                    steps++;
-                }
+                RighT();
 
             }
             if (direction == "Left")
             {
-                while (LogicForElements() != true && checkStation == false)
-                {
-                    playerPreviousXlocation = playerXlocation;
-                    playerPreviousYlocation = playerYlocation;
-                    playerXlocation -= 60;
-                    steps++;
-                }
+                LefT();
             }
-            if (direction == "Up" && checkStation == false)
+            if (direction == "Up")
             {
-                while (LogicForElements() != true)
-                {
-                    playerPreviousXlocation = playerXlocation;
-                    playerPreviousYlocation = playerYlocation;
-                    playerYlocation -= 60; steps++;
-                }
+                Up();
+
             }
-            if (direction == "Down" )
+            if (direction == "Down")
             {
-                while (LogicForElements() != true && checkStation == false)
-                {
-                    playerPreviousXlocation = playerXlocation;
-                    playerPreviousYlocation = playerYlocation;
-                    playerYlocation += 60; steps++;
-                }
+                Down();
+
             }
             if (direction == "DiagonalUpRight")
             {
-                while (LogicForElements() != true)
-                {
-                    playerPreviousXlocation = playerXlocation;
-                    playerPreviousYlocation = playerYlocation;
-                    playerXlocation -= 60;
-                    playerYlocation += 60; steps++;
-                }
+                DiagonalUpRight();
             }
             if (direction == "DiagonalDownRight")
             {
-                while (LogicForElements() != true)
-                {
-                    playerPreviousXlocation = playerXlocation;
-                    playerPreviousYlocation = playerYlocation;
-                    playerYlocation -= 60;
-                    playerXlocation += 60; steps++;
-                }
+                DiagonalDownRight();
+
             }
             if (direction == "DiagonalUpLeft")
             {
-                while (LogicForElements() != true)
-                {
-                    playerPreviousXlocation = playerXlocation;
-                    playerPreviousYlocation = playerYlocation;
-                    playerXlocation -= 60;
-                    playerYlocation -= 60; steps++;
-                }
+                DiagonalUpLeft();
             }
             if (direction == "DiagonalDownLeft")
             {
-                while (LogicForElements() != true)
+                DiagonalDownLeft();
+            }
+           
+
+        }
+        private void Down()
+        {
+            for (int i = 0; i < pictureBoxes.GetLength(0); i++)
+            {
+                indexForCheckI += 1;
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                {steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    break;
+                }
+
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
                 {
-                    playerPreviousXlocation = playerXlocation;
-                    playerPreviousYlocation = playerYlocation;
-                    playerXlocation += 60;
-                    playerYlocation += 60; steps++;
+                    indexForCheckI -= 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                {
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    steps++;
+                    score++;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                {
+                    lives--;
+                    indexForCheckI -= 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                {
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    steps++;
                 }
             }
-            if (direction == "Stop")
+        }
+        private void Up()
+        {
+            for (int i = 0; i < pictureBoxes.GetLength(0); i++)
             {
-                playerXlocation = playerPreviousXlocation;
-                playerYlocation = playerPreviousYlocation;
+                indexForCheckI -= 1;
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                {
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    break;
+                }
+
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                {
+                    indexForCheckI += 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                {
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    score++;
+                    steps++;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                {
+                    lives--;
+                    indexForCheckI += 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                {
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+
+                }
+            }
+        }
+        private void LefT()
+        {
+            for (int i = 0; i < pictureBoxes.GetLength(1); i++)
+            {
+                indexForCheckj -= 1;
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                {steps++; ;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    break;
+                }
+
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                {
+                    indexForCheckj += 1;
+                    
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                {
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    score++;
+                    steps++;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                {
+                    indexForCheckj += 1;
+                    lives--;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                {steps++; 
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+
+                }
 
             }
-          
         }
-        public void CheckLives()
+        private void RighT()
+        {
+            for (int i = 0; i < pictureBoxes.GetLength(1); i++)
+            {
+                indexForCheckj += 1;
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                {steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    break;
+                }
+
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                {
+                    indexForCheckj -= 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                {
+                    score++;
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                {
+                    lives--;
+                    indexForCheckj -= 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                {
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+
+                }
+
+            }
+        }
+        private void DiagonalDownRight()
+        {
+            for (int i = 0; i < pictureBoxes.GetLength(1) + pictureBoxes.GetLength(0); i++)
+            {
+                indexForCheckj -= 1;
+                indexForCheckI += 1;
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                {steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    break;
+                }
+
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                {
+                    indexForCheckj += 1;
+                    indexForCheckI -= 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                {
+                    score++;
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                {
+                    lives--;
+                    indexForCheckj += 1;
+                    indexForCheckI -= 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                {
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+
+                }
+
+            }
+        }
+        private void DiagonalUpRight()
+        {
+            for (int i = 0; i < pictureBoxes.GetLength(1) + pictureBoxes.GetLength(0); i++)
+            {
+                indexForCheckj += 1;
+                indexForCheckI -= 1;
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                {steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    break;
+                }
+
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                {
+                    indexForCheckj -= 1;
+                    indexForCheckI += 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                {steps++;
+                    score++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                {
+                    lives--;
+                    indexForCheckj -= 1;
+                    indexForCheckI += 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                {
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+
+                }
+
+            }
+        }
+        private void DiagonalUpLeft()
+        {
+            for (int i = 0; i < pictureBoxes.GetLength(1) + pictureBoxes.GetLength(0); i++)
+            {
+                indexForCheckj -= 1;
+                indexForCheckI -= 1;
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                {steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    break;
+                }
+
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                {
+                    indexForCheckj += 1;
+                    indexForCheckI += 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                {
+                    score++;
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                {
+                    lives--;
+                    indexForCheckj += 1;
+                    indexForCheckI += 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                {
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+
+                }
+
+            }
+        }
+        private void DiagonalDownLeft()
+        {
+            for (int i = 0; i < pictureBoxes.GetLength(1) + pictureBoxes.GetLength(0); i++)
+            {
+                indexForCheckj += 1;
+                indexForCheckI += 1;
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                {
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    break;
+                }
+
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                {
+                    indexForCheckj -= 1;
+                    indexForCheckI -= 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                {
+                    score++;
+                    steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                {
+                    lives--;
+                    indexForCheckj -= 1;
+                    indexForCheckI -= 1;
+                    break;
+                }
+                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                { steps++;
+                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+
+                }
+
+            }
+        }
+        public bool CheckLives()
         {
             if (lives <= 0)
             {
-                this.Close();
+                Controls.Clear();
+                Label label = new Label();
+                label.Text = "YOU LOSE(   " + $"YOUR SCORE:  {score}";
+                label.AutoSize = true;
+                label.Location = new Point(222, 90);
+                label.Font = new Font("Calibri", 18);
+                label.Padding = new Padding(20);
+                label.Visible = true;
+                label.BackColor = Color.AliceBlue;
+                Controls.Add(label);
+                return true;
             }
+            return false;
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            CheckLives();
+            if (CheckLives()) timer1.Enabled = false;
             label2.AutoSize = true;
             label2.Text = $"{score}";
 
