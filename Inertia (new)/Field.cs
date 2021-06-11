@@ -12,14 +12,17 @@ namespace Inertia__new_
         public int width;
         public int height;
         protected string path;
+
         public char[,] arr;
+        public Field[,] arrayOfObjects;
         
         public string pathOfImage { get; set; }
-        protected char[,] Made()
+        public char[,] Made()
         {
             using (StreamReader sr = new StreamReader(path))
             {
                 arr = new char[height, width];
+                arrayOfObjects = new Field[height, width];
                 string[] arr2 = new string[height];
                 for (int i = 0; i < height; i++)
                 {
@@ -30,28 +33,51 @@ namespace Inertia__new_
                     for (int j = 0; j < width; j++)
                     {
                         arr[i, j] = arr2[i][j];
-                      
+                        if(arr[i,j] == '%')
+                        {
+                            arrayOfObjects[i, j] = new Trap();
+                        }
+                        if (arr[i, j] == '@')
+                        {
+                            arrayOfObjects[i, j] = new Coins();
+                        }
+                        if (arr[i, j] == '#')
+                        {
+                            arrayOfObjects[i, j] = new Barrier();
+                        }
+                        if (arr[i, j] == '.')
+                        {
+                            arrayOfObjects[i, j] = new Station();
+                        }
+                        if (arr[i, j] == 'I')
+                        {
+                            arrayOfObjects[i, j] = new Player();
+                        }
+                        if (arr[i, j] == ' ')
+                        {
+                            arrayOfObjects[i, j] = new Space();
+                        }
+
                     }
                 }
                 return arr;
             }
 
         }
-    
+   
 
     }
     public class Level_1 : Field
     {
     
         public string pathOfLevelImages;
-        public char[,] mapLevel;
+
         public Level_1()
         {
             width = 21;
             height = 9;
             path = @"../../../../map.txt";
-            mapLevel = Made();
-
+ 
         }
 
 

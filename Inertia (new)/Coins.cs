@@ -4,10 +4,13 @@ using System.Text;
 
 namespace Inertia__new_
 {
-    class Coins
+    class Coins : Field
     { 
         public string pathOfImageCoins = @"../../../../coins.png";
-      
+        public Coins()
+        {
+            pathOfImage = pathOfImageCoins;
+        }
        
     }
 }

@@ -6,58 +6,91 @@ using System.Windows.Forms;
 
 namespace Inertia__new_
 {
-    class Player
+   public class Player :Field
     {
        public int directionX = 120;
        public int directionY = 60;
-       public string direction;
-
-        public string pathOgImagePlayer = @"../../../../player.png";
+        public int playerPreviousXlocation;
+        public int playerPreviousYlocation;
+        public string direction;
+        public Player()
+        {
+            pathOfImage = @"../../../../player.png";
+        }
         public void ChangeCoordinates()
         {
-            if (direction == "Right")
-            {
-                directionX += 60;
-            }
-            if (direction == "Left")
-            {
-                directionX -= 60;
-            }
-            if (direction == "Up")
-            {
-                directionY -= 60;
-            }
-            if (direction == "Down")
-            {
-                directionY += 60;
-            }
-            if (direction == "DiagonalUpRight")
-            {
-                directionX -=60;
-                directionY +=60;
-            }
-            if (direction == "DiagonalDownRight")
-            {
-                directionY -= 60;
-                directionX +=60;
-            }
-            if (direction == "DiagonalUpLeft")
-            {
-                directionX -= 60;
-                directionY -= 60;
-            }
-            if (direction == "DiagonalDownLeft")
-            {
-                directionX += 60;
-                directionY += 60;
-            }
-            if (direction == "Stop") 
-            {
+           
+                if (direction == "Right")
+                {
+                    playerPreviousXlocation = directionX;
+                    playerPreviousYlocation = directionY;
+                    directionX += 60;
+                
+                }
+                if (direction == "Left")
+                {
+              
+                    playerPreviousXlocation = directionX;
+                    playerPreviousYlocation = directionY;
+                    directionX -= 60;
+                
+              
+                }
+                if (direction == "Up")
+                {
+                    playerPreviousXlocation = directionX;
+                    playerPreviousYlocation = directionY;
+                    directionY -= 60;
+                }
+                if (direction == "Down")
+                {
+                    playerPreviousXlocation = directionX;
+                    playerPreviousYlocation = directionY;
+                    directionY += 60;
+                }
+                if (direction == "DiagonalUpRight")
+                {
+                    playerPreviousXlocation = directionX;
+                    playerPreviousYlocation = directionY;
+                    directionX -= 60;
+                    directionY += 60;
+                }
+                if (direction == "DiagonalDownRight")
+                {
+                    playerPreviousXlocation = directionX;
+                    playerPreviousYlocation = directionY;
+                    directionY -= 60;
+                    directionX += 60;
+                }
+                if (direction == "DiagonalUpLeft")
+                {
+                    playerPreviousXlocation = directionX;
+                    playerPreviousYlocation = directionY;
+                    directionX -= 60;
+                    directionY -= 60;
+                }
+                if (direction == "DiagonalDownLeft")
+                {
+                while (direction != "Stop")
+                {
+                    playerPreviousXlocation = directionX;
+                    playerPreviousYlocation = directionY;
+                    directionX += 60;
+                    directionY += 60;
+                }
+                }
+                if (direction == "Stop")
+                {
+                    directionX = playerPreviousXlocation;
+                    directionY = playerPreviousYlocation;
 
-                directionX -= 0;
-                directionY -= 0;
-            }
+                }
+            
         }
-     
+        public void MakeMap(Field field)
+        {
+            field.Made();
+        }
+
     }
 }
