@@ -9,11 +9,11 @@ namespace Inertia__new_
     {
         public string direction;
       
-        int indexI;
-        int indexJ;
+        int uselessX;
+        int uselessY;
 
-        int indexForCheckI;
-        int indexForCheckj;
+        int X;
+        int Y;
 
         protected PictureBox[,] pictureBoxes;
 
@@ -31,8 +31,8 @@ namespace Inertia__new_
             timer2.Interval = 1000;
 
             GenerateMap();
-            Play();
-            this.KeyDown += new KeyEventHandler(keyisup);
+            //Play();
+            this.KeyDown += new KeyEventHandler(KeyIsUp);
 
 
         }
@@ -92,10 +92,10 @@ namespace Inertia__new_
                         pictureBoxes[i, j].Name = "player";
                         pictureBoxes[i, j].Image = Image.FromFile(level.arrayOfObjects[i, j].pathOfImage);
                         pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;
-                        indexI = i;
-                        indexJ = j;
-                        indexForCheckI = i;
-                        indexForCheckj = j;
+                        uselessX = i;
+                        uselessY = j;
+                        X = i;
+                        Y = j;
                     }
 
                     this.Controls.Add(pictureBoxes[i, j]);
@@ -104,7 +104,7 @@ namespace Inertia__new_
             }
 
         }
-        private void keyisup(object sender, KeyEventArgs e)
+        private void KeyIsUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up)
             {
@@ -192,36 +192,37 @@ namespace Inertia__new_
         }
         private void Down()
         {
-            for (int i = 0; i < pictureBoxes.GetLength(0); i++)
+            while (X< pictureBoxes.GetLength(0))
             {
-                indexForCheckI += 1;
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
-                {steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                X += 1;
+                if ((string)pictureBoxes[X, Y].Tag == "station")
+                {
+                    steps++;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(X*60, Y*60);
                     break;
                 }
 
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                if ((string)pictureBoxes[X, Y].Tag == "barrier")
                 {
-                    indexForCheckI -= 1;
+                    X -= 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                if ((string)pictureBoxes[X, Y].Tag == "coins")
                 {
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
-                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
+                    pictureBoxes[X, Y].Visible = false;
                     steps++;
                     score++;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                if ((string)pictureBoxes[X, Y].Tag == "trap")
                 {
                     lives--;
-                    indexForCheckI -= 1;
+                    X -= 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                if ((string)pictureBoxes[X, Y].Tag == "space")
                 {
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     steps++;
                 }
             }
@@ -230,36 +231,36 @@ namespace Inertia__new_
         {
             for (int i = 0; i < pictureBoxes.GetLength(0); i++)
             {
-                indexForCheckI -= 1;
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                X -= 1;
+                if ((string)pictureBoxes[X, Y].Tag == "station")
                 {
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     break;
                 }
 
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                if ((string)pictureBoxes[X, Y].Tag == "barrier")
                 {
-                    indexForCheckI += 1;
+                    X += 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                if ((string)pictureBoxes[X, Y].Tag == "coins")
                 {
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
-                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
+                    pictureBoxes[X, Y].Visible = false;
                     score++;
                     steps++;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                if ((string)pictureBoxes[X, Y].Tag == "trap")
                 {
                     lives--;
-                    indexForCheckI += 1;
+                    X += 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                if ((string)pictureBoxes[X, Y].Tag == "space")
                 {
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
 
                 }
             }
@@ -268,35 +269,35 @@ namespace Inertia__new_
         {
             for (int i = 0; i < pictureBoxes.GetLength(1); i++)
             {
-                indexForCheckj -= 1;
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                Y -= 1;
+                if ((string)pictureBoxes[X, Y].Tag == "station")
                 {steps++; ;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     break;
                 }
 
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                if ((string)pictureBoxes[X, Y].Tag == "barrier")
                 {
-                    indexForCheckj += 1;
+                    Y += 1;
                     
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                if ((string)pictureBoxes[X, Y].Tag == "coins")
                 {
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
-                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
+                    pictureBoxes[X, Y].Visible = false;
                     score++;
                     steps++;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                if ((string)pictureBoxes[X, Y].Tag == "trap")
                 {
-                    indexForCheckj += 1;
+                    Y += 1;
                     lives--;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                if ((string)pictureBoxes[X, Y].Tag == "space")
                 {steps++; 
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
 
                 }
 
@@ -306,35 +307,35 @@ namespace Inertia__new_
         {
             for (int i = 0; i < pictureBoxes.GetLength(1); i++)
             {
-                indexForCheckj += 1;
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                Y += 1;
+                if ((string)pictureBoxes[X, Y].Tag == "station")
                 {steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     break;
                 }
 
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                if ((string)pictureBoxes[X, Y].Tag == "barrier")
                 {
-                    indexForCheckj -= 1;
+                    Y -= 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                if ((string)pictureBoxes[X, Y].Tag == "coins")
                 {
                     score++;
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
-                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
+                    pictureBoxes[X, Y].Visible = false;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                if ((string)pictureBoxes[X, Y].Tag == "trap")
                 {
                     lives--;
-                    indexForCheckj -= 1;
+                    Y -= 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                if ((string)pictureBoxes[X, Y].Tag == "space")
                 {
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
 
                 }
 
@@ -344,38 +345,38 @@ namespace Inertia__new_
         {
             for (int i = 0; i < pictureBoxes.GetLength(1) + pictureBoxes.GetLength(0); i++)
             {
-                indexForCheckj -= 1;
-                indexForCheckI += 1;
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                Y -= 1;
+                X += 1;
+                if ((string)pictureBoxes[X, Y].Tag == "station")
                 {steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     break;
                 }
 
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                if ((string)pictureBoxes[X, Y].Tag == "barrier")
                 {
-                    indexForCheckj += 1;
-                    indexForCheckI -= 1;
+                    Y += 1;
+                    X -= 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                if ((string)pictureBoxes[X, Y].Tag == "coins")
                 {
                     score++;
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
-                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
+                    pictureBoxes[X, Y].Visible = false;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                if ((string)pictureBoxes[X, Y].Tag == "trap")
                 {
                     lives--;
-                    indexForCheckj += 1;
-                    indexForCheckI -= 1;
+                    Y += 1;
+                    X -= 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                if ((string)pictureBoxes[X, Y].Tag == "space")
                 {
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
 
                 }
 
@@ -385,37 +386,37 @@ namespace Inertia__new_
         {
             for (int i = 0; i < pictureBoxes.GetLength(1) + pictureBoxes.GetLength(0); i++)
             {
-                indexForCheckj += 1;
-                indexForCheckI -= 1;
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                Y += 1;
+                X -= 1;
+                if ((string)pictureBoxes[X, Y].Tag == "station")
                 {steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     break;
                 }
 
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                if ((string)pictureBoxes[X, Y].Tag == "barrier")
                 {
-                    indexForCheckj -= 1;
-                    indexForCheckI += 1;
+                    Y -= 1;
+                    X += 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                if ((string)pictureBoxes[X, Y].Tag == "coins")
                 {steps++;
                     score++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
-                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
+                    pictureBoxes[X, Y].Visible = false;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                if ((string)pictureBoxes[X, Y].Tag == "trap")
                 {
                     lives--;
-                    indexForCheckj -= 1;
-                    indexForCheckI += 1;
+                    Y -= 1;
+                    X += 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                if ((string)pictureBoxes[X, Y].Tag == "space")
                 {
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
 
                 }
 
@@ -425,38 +426,38 @@ namespace Inertia__new_
         {
             for (int i = 0; i < pictureBoxes.GetLength(1) + pictureBoxes.GetLength(0); i++)
             {
-                indexForCheckj -= 1;
-                indexForCheckI -= 1;
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                Y -= 1;
+                X -= 1;
+                if ((string)pictureBoxes[X, Y].Tag == "station")
                 {steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     break;
                 }
 
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                if ((string)pictureBoxes[X, Y].Tag == "barrier")
                 {
-                    indexForCheckj += 1;
-                    indexForCheckI += 1;
+                    Y += 1;
+                    X += 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                if ((string)pictureBoxes[X, Y].Tag == "coins")
                 {
                     score++;
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
-                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
+                    pictureBoxes[X, Y].Visible = false;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                if ((string)pictureBoxes[X, Y].Tag == "trap")
                 {
                     lives--;
-                    indexForCheckj += 1;
-                    indexForCheckI += 1;
+                    Y += 1;
+                    X += 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                if ((string)pictureBoxes[X, Y].Tag == "space")
                 {
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
 
                 }
 
@@ -466,38 +467,38 @@ namespace Inertia__new_
         {
             for (int i = 0; i < pictureBoxes.GetLength(1) + pictureBoxes.GetLength(0); i++)
             {
-                indexForCheckj += 1;
-                indexForCheckI += 1;
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "station")
+                Y += 1;
+                X += 1;
+                if ((string)pictureBoxes[X, Y].Tag == "station")
                 {
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     break;
                 }
 
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "barrier")
+                if ((string)pictureBoxes[X, Y].Tag == "barrier")
                 {
-                    indexForCheckj -= 1;
-                    indexForCheckI -= 1;
+                    Y -= 1;
+                    X -= 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "coins")
+                if ((string)pictureBoxes[X, Y].Tag == "coins")
                 {
                     score++;
                     steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
-                    pictureBoxes[indexForCheckI, indexForCheckj].Visible = false;
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
+                    pictureBoxes[X, Y].Visible = false;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "trap")
+                if ((string)pictureBoxes[X, Y].Tag == "trap")
                 {
                     lives--;
-                    indexForCheckj -= 1;
-                    indexForCheckI -= 1;
+                    Y -= 1;
+                    X -= 1;
                     break;
                 }
-                if ((string)pictureBoxes[indexForCheckI, indexForCheckj].Tag == "space")
+                if ((string)pictureBoxes[X, Y].Tag == "space")
                 { steps++;
-                    pictureBoxes[indexI, indexJ].Location = new Point(pictureBoxes[indexForCheckI, indexForCheckj].Location.X, pictureBoxes[indexForCheckI, indexForCheckj].Location.Y);
+                    pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
 
                 }
 
