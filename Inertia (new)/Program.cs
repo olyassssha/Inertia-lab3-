@@ -17,7 +17,7 @@ namespace Inertia__new_
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Inertia());
+            Application.Run(new Form2());
         }
     }
 }

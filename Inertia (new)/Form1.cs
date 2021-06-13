@@ -309,7 +309,8 @@ namespace Inertia__new_
             {
                 Y += 1;
                 if ((string)pictureBoxes[X, Y].Tag == "station")
-                {steps++;
+                {
+                    steps++;
                     pictureBoxes[uselessX, uselessY].Location = new Point(pictureBoxes[X, Y].Location.X, pictureBoxes[X, Y].Location.Y);
                     break;
                 }

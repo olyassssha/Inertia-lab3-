@@ -121,4 +121,7 @@
   <data name="st,small,507x507-pad,600x600,f8f8f8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\st,small,507x507-pad,600x600,f8f8f8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="minions_PNG60" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minions_PNG60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
