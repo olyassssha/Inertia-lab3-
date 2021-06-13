@@ -41,13 +41,14 @@ namespace Inertia__new_
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(1014, 531);
+            this.button1.Location = new System.Drawing.Point(1014, 621);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(176, 60);
             this.button1.TabIndex = 0;
             this.button1.Text = "Сведения";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
+            this.button1.MouseHover += new System.EventHandler(this.Instruction_Click);
             // 
             // button2
             // 
@@ -76,20 +77,21 @@ namespace Inertia__new_
             // 
             this.button3.BackColor = System.Drawing.SystemColors.Info;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(1014, 373);
+            this.button3.Location = new System.Drawing.Point(1014, 391);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(176, 60);
             this.button3.TabIndex = 3;
             this.button3.Text = "Правила игры";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.MouseLeave += new System.EventHandler(this.button3_MouseLeave);
+            this.button3.MouseHover += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Inertia__new_.Properties.Resources.minions_PNG60;
             this.pictureBox1.Location = new System.Drawing.Point(82, 75);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(782, 799);
+            this.pictureBox1.Size = new System.Drawing.Size(814, 799);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
