@@ -535,6 +535,12 @@ namespace Inertia__new_
             label6.AutoSize = true;
             label6.Text = $"{lives}";
 
+            label7.AutoSize = true;
+            label7.Text = $"{X}";
+
+            label9.AutoSize = true;
+            label9.Text = $"{Y}";
+
             Controls.Add(label2);
             Controls.Add(label4);
             Controls.Add(label6);
@@ -561,6 +567,8 @@ namespace Inertia__new_
         {
             if (CheckScore()) { timer1.Enabled = false; }
         }
+
+       
     }
 
     

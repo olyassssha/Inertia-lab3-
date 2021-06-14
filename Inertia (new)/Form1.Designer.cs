@@ -39,6 +39,10 @@ namespace Inertia__new_
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -48,9 +52,10 @@ namespace Inertia__new_
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 657);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(19, 650);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.Size = new System.Drawing.Size(61, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Score";
             // 
@@ -68,9 +73,10 @@ namespace Inertia__new_
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(184, 657);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(170, 650);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 20);
+            this.label3.Size = new System.Drawing.Size(59, 28);
             this.label3.TabIndex = 2;
             this.label3.Text = "Steps";
             // 
@@ -88,9 +94,10 @@ namespace Inertia__new_
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(317, 657);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(304, 652);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 20);
+            this.label5.Size = new System.Drawing.Size(54, 28);
             this.label5.TabIndex = 4;
             this.label5.Text = "Lives";
             // 
@@ -109,11 +116,60 @@ namespace Inertia__new_
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label7.Location = new System.Drawing.Point(461, 659);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(19, 22);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.Desktop;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(431, 653);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 28);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "X";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label9.Location = new System.Drawing.Point(579, 659);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(19, 22);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "0";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.SystemColors.Desktop;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(550, 653);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(23, 28);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Y";
+            // 
             // Inertia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 853);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -139,6 +195,10 @@ namespace Inertia__new_
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 
