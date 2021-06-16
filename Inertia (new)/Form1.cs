@@ -539,7 +539,7 @@ namespace Inertia__new_
             label7.Text = $"{X}";
 
             label9.AutoSize = true;
-            label9.Text = $"{Y}";
+            label9 .Text = $"{Y}";
 
             Controls.Add(label2);
             Controls.Add(label4);
