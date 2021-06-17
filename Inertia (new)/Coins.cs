@@ -6,7 +6,7 @@ namespace Inertia__new_
 {
     class Coins : Field
     { 
-        public string pathOfImageCoins = @"../../../../coins.png";
+        public string pathOfImageCoins = @"../../../pictures/coins.png";
         public Coins()
         {
             pathOfImage = pathOfImageCoins;

@@ -118,10 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="minions_PNG60" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minions_PNG60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="st,small,507x507-pad,600x600,f8f8f8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\st,small,507x507-pad,600x600,f8f8f8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="minions_PNG60" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minions_PNG60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="minion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\pictures\minion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -6,7 +6,7 @@ namespace Inertia__new_
 {
     class Trap : Field
     {
-        public string pathOfImageTrap = @"../../../../trap.png"; 
+        public string pathOfImageTrap = @"../../../pictures/trap.png"; 
         public Trap()
         {
             pathOfImage = pathOfImageTrap;

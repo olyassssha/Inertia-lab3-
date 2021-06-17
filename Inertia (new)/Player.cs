@@ -11,7 +11,7 @@ namespace Inertia__new_
 
         public Player()
         {
-            pathOfImage = @"../../../../player.png";
+            pathOfImage = @"../../../pictures/player.png";
         }
         public void MakeMap(Field field)
         {

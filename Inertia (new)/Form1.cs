@@ -24,7 +24,7 @@ namespace Inertia__new_
         public Inertia()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
             timer1.Enabled = true;
             timer2.Enabled = true;
             timer1.Interval = 1000;
@@ -85,7 +85,6 @@ namespace Inertia__new_
                     if (level.arrayOfObjects[i, j].GetType() == typeof(Space))
                     {
                         pictureBoxes[i, j].Tag = "space";
-
                     }
                     if (level.arrayOfObjects[i, j].GetType() == typeof(Player))
                     {
@@ -510,7 +509,11 @@ namespace Inertia__new_
             if (lives <= 0)
             {
                 Controls.Clear();
-                Label label = new Label();
+                Label label = new Label(); PictureBox lose = new PictureBox();
+                lose.Image = Image.FromFile(@"../../../pictures/lose2.jpg");
+                lose.Location = new Point(222, 200);
+                lose.Size = new Size(500, 600);
+                lose.SizeMode = PictureBoxSizeMode.Zoom;
                 label.Text = "YOU LOSE(   " + $"YOUR SCORE:  {score}";
                 label.AutoSize = true;
                 label.Location = new Point(222, 90);
@@ -519,13 +522,15 @@ namespace Inertia__new_
                 label.Visible = true;
                 label.BackColor = Color.AliceBlue;
                 Controls.Add(label);
+                Controls.Add(label); Controls.Add(lose);
+                timer1.Enabled = false; timer2.Enabled = false;
                 return true;
             }
             return false;
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (CheckLives()) timer1.Enabled = false;
+            if (CheckLives()) timer1.Enabled = false; timer2.Enabled = false;
             label2.AutoSize = true;
             label2.Text = $"{score}";
 
@@ -550,6 +555,11 @@ namespace Inertia__new_
             if(score >= 15)
             {
                 Controls.Clear();
+                PictureBox win = new PictureBox();
+                win.Image = Image.FromFile(@"../../../pictures/win.jpg");
+                win.Location = new Point(222,250);
+                win.Size = new Size(500, 600);
+                win.SizeMode = PictureBoxSizeMode.Zoom;
                 Label label = new Label();
                 label.Text = "YOU WIN!   " + $"YOUR SCORE:  {score}";
                 label.AutoSize = true;
@@ -558,7 +568,7 @@ namespace Inertia__new_
                 label.Padding = new Padding(20);
                 label.Visible = true;
                 label.BackColor = Color.AliceBlue;
-                Controls.Add(label);
+                Controls.Add(label); Controls.Add(win);
                 return true;
             }
             return false;

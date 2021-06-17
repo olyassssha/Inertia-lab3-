@@ -63,6 +63,16 @@ namespace Inertia__new_.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap minion {
+            get {
+                object obj = ResourceManager.GetObject("minion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap minions_PNG60 {
             get {
                 object obj = ResourceManager.GetObject("minions_PNG60", resourceCulture);

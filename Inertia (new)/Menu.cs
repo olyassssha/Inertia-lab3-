@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace Inertia__new_
 {
-    public partial class Form2 : Form
+    public partial class Menu : Form
     {
-        public Form2()
+        public Menu()
         {
             this.WindowState = FormWindowState.Maximized;
             InitializeComponent();

@@ -1,7 +1,7 @@
 ﻿
 namespace Inertia__new_
 {
-    partial class Form2
+    partial class Menu
     {
         /// <summary>
         ///  Required designer variable.
@@ -88,14 +88,14 @@ namespace Inertia__new_
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Inertia__new_.Properties.Resources.minions_PNG60;
-            this.pictureBox1.Location = new System.Drawing.Point(82, 75);
+            this.pictureBox1.Image = global::Inertia__new_.Properties.Resources.minion;
+            this.pictureBox1.Location = new System.Drawing.Point(40, 77);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(814, 799);
+            this.pictureBox1.Size = new System.Drawing.Size(855, 839);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // Form2
+            // Menu
             // 
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1447, 866);
@@ -104,7 +104,7 @@ namespace Inertia__new_
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "Form2";
+            this.Name = "Menu";
             this.Text = "Instruction";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -6,7 +6,7 @@ namespace Inertia__new_
 {
     class Barrier : Field
     {
-        public string pathOfImageBarrier = @"../../../../fence.png";
+        public string pathOfImageBarrier = @"../../../pictures/fence.png";
         public Barrier()
         {
             pathOfImage = pathOfImageBarrier;
