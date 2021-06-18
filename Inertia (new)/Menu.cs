@@ -15,55 +15,50 @@ namespace Inertia__new_
         }
 
         Inertia inertia = new Inertia();
-        Label label = new Label();
-        Label label2 = new Label();
-        private void Instruction_Click(object sender, EventArgs e)
+        Label informationLabel = new Label();
+        Label rulesLabel = new Label();
+        private void Information_Hover(object sender, EventArgs e)
         {
-        
-            button1.BackColor = Color.Red;
-       
-           
-            label.Location = new Point(button1.Location.X+80, button1.Location.Y+60);
-            label.AutoSize = true;
-            label.Text = "Операционная система: Windows 7, 32 бит \n" +
+            information.BackColor = Color.Red;
+            informationLabel.Location = new Point(information.Location.X+80, information.Location.Y+60);
+            informationLabel.AutoSize = true;
+            informationLabel.Text = "Операционная система: Windows 7, 32 бит \n" +
                          "Оперативная память: 130 Кб \n" +
                          "Необходимое место на диске: 6 Мб";
-            label.Font = new Font("Calibri", 12);
-            label.Show();
-            Controls.Add(label);
+            informationLabel.Font = new Font("Calibri", 12);
+            informationLabel.Show();
+            Controls.Add(informationLabel);
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void Information_MouseLeave(object sender, EventArgs e)
+        {
+            information.BackColor = Color.Transparent;
+            informationLabel.Hide();
+        }
+        private void Start_Click(object sender, EventArgs e)
         {
             this.Hide();
             inertia.Show();
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void Rules_Hover(object sender, EventArgs e)
         {
      
-            button3.BackColor = Color.Red;
-            label2.Name = "move";
-            label2.Location = new Point(button3.Location.X + 80, button3.Location.Y + 60);
-            label2.AutoSize = true;
-            label2.Text = "Игрок двигается по инерции \n" + "До клетки остановки, ловушки или забора \n"+ "только после этого вы можете поменять направление \n"+
+            rules.BackColor = Color.Red;
+            rulesLabel.Name = "move";
+            rulesLabel.Location = new Point(rules.Location.X + 80, rules.Location.Y + 60);
+            rulesLabel.AutoSize = true;
+            rulesLabel.Text = "Игрок двигается по инерции \n" + "До клетки остановки, ловушки или забора \n"+ "только после этого вы можете поменять направление \n"+
                 "Используте курсорные клавиши для движения \n" + "Такжк игрок может двигаться по диагонали: D(вверх, право), F(вниз, вправо), \n G(вверх, налево), H(вниз, налево)";
-            label2.Font = new Font("Calibri", 12);
-            label2.Show();
-            Controls.Add(label2);
+            rulesLabel.Font = new Font("Calibri", 12);
+            rulesLabel.Show();
+            Controls.Add(rulesLabel);
+        }
+        private void Rules_MouseLeave(object sender, EventArgs e)
+        {
+            rules.BackColor = Color.Transparent;
+            rulesLabel.Hide();
         }
 
-        private void button1_MouseLeave(object sender, EventArgs e)
-        {
-            button1.BackColor = Color.Transparent;
-            label.Hide();
-        }
-
-        private void button3_MouseLeave(object sender, EventArgs e)
-        {
-            button3.BackColor = Color.Transparent;
-            label2.Hide();
-        }
+      
     }
 
 

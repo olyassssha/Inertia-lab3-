@@ -29,84 +29,84 @@ namespace Inertia__new_
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.information = new System.Windows.Forms.Button();
+            this.start = new System.Windows.Forms.Button();
+            this.headline = new System.Windows.Forms.Label();
+            this.rules = new System.Windows.Forms.Button();
+            this.fon = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.fon)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // information
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(1014, 621);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(176, 60);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Сведения";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
-            this.button1.MouseHover += new System.EventHandler(this.Instruction_Click);
+            this.information.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.information.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.information.Location = new System.Drawing.Point(1014, 621);
+            this.information.Name = "information";
+            this.information.Size = new System.Drawing.Size(176, 60);
+            this.information.TabIndex = 0;
+            this.information.Text = "Сведения";
+            this.information.UseVisualStyleBackColor = false;
+            this.information.MouseLeave += new System.EventHandler(this.Information_MouseLeave);
+            this.information.MouseHover += new System.EventHandler(this.Information_Hover);
             // 
-            // button2
+            // start
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.GrayText;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(1014, 230);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(176, 60);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Начать";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.start.BackColor = System.Drawing.SystemColors.GrayText;
+            this.start.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.start.Location = new System.Drawing.Point(1014, 230);
+            this.start.Name = "start";
+            this.start.Size = new System.Drawing.Size(176, 60);
+            this.start.TabIndex = 1;
+            this.start.Text = "Начать";
+            this.start.UseVisualStyleBackColor = false;
+            this.start.Click += new System.EventHandler(this.Start_Click);
             // 
-            // label1
+            // headline
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.Menu;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(438, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(526, 41);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Добро пожаловать в игру \"Инерция!\"";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.headline.BackColor = System.Drawing.SystemColors.Menu;
+            this.headline.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.headline.Location = new System.Drawing.Point(438, 19);
+            this.headline.Name = "headline";
+            this.headline.Size = new System.Drawing.Size(526, 41);
+            this.headline.TabIndex = 2;
+            this.headline.Text = "Добро пожаловать в игру \"Инерция!\"";
+            this.headline.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button3
+            // rules
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.Info;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(1014, 391);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(176, 60);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Правила игры";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.MouseLeave += new System.EventHandler(this.button3_MouseLeave);
-            this.button3.MouseHover += new System.EventHandler(this.button3_Click);
+            this.rules.BackColor = System.Drawing.SystemColors.Info;
+            this.rules.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rules.Location = new System.Drawing.Point(1014, 391);
+            this.rules.Name = "rules";
+            this.rules.Size = new System.Drawing.Size(176, 60);
+            this.rules.TabIndex = 3;
+            this.rules.Text = "Правила игры";
+            this.rules.UseVisualStyleBackColor = false;
+            this.rules.MouseLeave += new System.EventHandler(this.Rules_MouseLeave);
+            this.rules.MouseHover += new System.EventHandler(this.Rules_Hover);
             // 
-            // pictureBox1
+            // fon
             // 
-            this.pictureBox1.Image = global::Inertia__new_.Properties.Resources.minion;
-            this.pictureBox1.Location = new System.Drawing.Point(40, 77);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(855, 839);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.fon.Image = global::Inertia__new_.Properties.Resources.minion;
+            this.fon.Location = new System.Drawing.Point(40, 77);
+            this.fon.Name = "fon";
+            this.fon.Size = new System.Drawing.Size(855, 839);
+            this.fon.TabIndex = 4;
+            this.fon.TabStop = false;
             // 
             // Menu
             // 
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1447, 866);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.fon);
+            this.Controls.Add(this.rules);
+            this.Controls.Add(this.headline);
+            this.Controls.Add(this.start);
+            this.Controls.Add(this.information);
             this.Name = "Menu";
-            this.Text = "Instruction";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Text = "Menu";
+            ((System.ComponentModel.ISupportInitialize)(this.fon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -114,11 +114,11 @@ namespace Inertia__new_
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button information;
+        private System.Windows.Forms.Button start;
+        private System.Windows.Forms.Label headline;
+        private System.Windows.Forms.Button rules;
+        private System.Windows.Forms.PictureBox fon;
     }
 }
 

@@ -47,7 +47,7 @@ namespace Inertia__new_
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.BlockInformation_Tick);
             // 
             // label1
             // 
@@ -55,9 +55,9 @@ namespace Inertia__new_
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(19, 650);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 28);
+            this.label1.Size = new System.Drawing.Size(60, 28);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Score";
+            this.label1.Text = "Очки";
             // 
             // label2
             // 
@@ -76,9 +76,9 @@ namespace Inertia__new_
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(170, 650);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 28);
+            this.label3.Size = new System.Drawing.Size(61, 28);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Steps";
+            this.label3.Text = "Шаги";
             // 
             // label4
             // 
@@ -97,16 +97,16 @@ namespace Inertia__new_
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.Location = new System.Drawing.Point(304, 652);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 28);
+            this.label5.Size = new System.Drawing.Size(74, 28);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Lives";
+            this.label5.Text = "Жизни";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label6.Location = new System.Drawing.Point(364, 657);
+            this.label6.Location = new System.Drawing.Point(374, 658);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(27, 22);
             this.label6.TabIndex = 5;

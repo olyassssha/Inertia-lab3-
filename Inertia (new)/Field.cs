@@ -9,20 +9,20 @@ namespace Inertia__new_
 {
     public abstract class Field
     {
-        public int width;
-        public int height;
+        public static int width;
+        public static int height;
         protected string path;
 
+
         public char[,] arr;
-        public Field[,] arrayOfObjects;
+        static public Element[,] arrayOfObjects;
         
-        public string pathOfImage { get; set; }
         public char[,] Made()
         {
             using (StreamReader sr = new StreamReader(path))
             {
                 arr = new char[height, width];
-                arrayOfObjects = new Field[height, width];
+                arrayOfObjects = new Element[height, width];
                 string[] arr2 = new string[height];
                 for (int i = 0; i < height; i++)
                 {
@@ -52,6 +52,10 @@ namespace Inertia__new_
                         if (arr[i, j] == 'I')
                         {
                             arrayOfObjects[i, j] = new Player();
+                            Element.playerX = i;
+                            Element.playerY = j;
+                            Element.X = i;
+                            Element.Y = j;
                         }
                         if (arr[i, j] == ' ')
                         {
@@ -71,7 +75,6 @@ namespace Inertia__new_
     {
     
         public string pathOfLevelImages;
-
         public Level_1()
         {
             width = 21;
