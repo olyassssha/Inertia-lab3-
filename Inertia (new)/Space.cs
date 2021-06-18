@@ -13,7 +13,6 @@ namespace Inertia__new_
             steps++;
             return true;
         }
-
         public override void MakeMapPicturesBoxes(int i, int j)
         {
            

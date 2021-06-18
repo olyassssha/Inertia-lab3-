@@ -18,7 +18,6 @@ namespace Inertia__new_
             Y -= y;
             return false;
         }
-
         public override void MakeMapPicturesBoxes(int i, int j)
         {
             Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.arrayOfObjects[i, j].pathOfImage);

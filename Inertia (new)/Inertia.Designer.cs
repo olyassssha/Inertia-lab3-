@@ -179,6 +179,7 @@ namespace Inertia__new_
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Inertia";
             this.Text = "Inertia";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Inertia_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

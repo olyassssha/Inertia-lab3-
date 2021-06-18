@@ -12,7 +12,6 @@ namespace Inertia__new_
         {
             pathOfImage = @"../../../pictures/trap.png";
         }
-
         public override bool Logic(int x, int y)
         {
             lives--;
@@ -21,7 +20,6 @@ namespace Inertia__new_
             return false;
           
         }
-
         public override void MakeMapPicturesBoxes(int i, int j)
         {
             Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.arrayOfObjects[i, j].pathOfImage);

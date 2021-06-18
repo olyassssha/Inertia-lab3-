@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
@@ -8,7 +9,6 @@ namespace Inertia__new_
     public partial class Inertia : Form
     {
         public static PictureBox[,] pictureBoxes;
-
         public Inertia()
         {
             InitializeComponent();
@@ -17,7 +17,8 @@ namespace Inertia__new_
             timer1.Interval = 1000;
             timer2.Interval = 1000;
             GenerateMap();
-            //Play();
+            //Form1_Closing(Inertia);
+           //Play();
             this.KeyDown += new KeyEventHandler(KeyIsUp);
         }
 
@@ -84,7 +85,13 @@ namespace Inertia__new_
             }
 
         }
-     
+
+        void Form1_Closing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+            if (DialogResult.Yes == MessageBox.Show("Вы хотите закончить работу с программой?", " ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)) e.Cancel = false;
+        }
+
         public bool CheckLives()
         {
             if (Element.lives <= 0)
@@ -157,6 +164,12 @@ namespace Inertia__new_
         private void timer2_Tick(object sender, EventArgs e)
         {
             if (CheckScore()) { timer1.Enabled = false; }
+        }
+
+        private void Inertia_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            if (DialogResult.Yes == MessageBox.Show("Вы хотите закончить работу с программой?", " ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)) e.Cancel = false;
         }
     }
 

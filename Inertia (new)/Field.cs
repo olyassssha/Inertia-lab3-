@@ -73,7 +73,6 @@ namespace Inertia__new_
     }
     public class Level_1 : Field
     {
-    
         public string pathOfLevelImages;
         public Level_1()
         {
@@ -82,8 +81,6 @@ namespace Inertia__new_
             path = @"../../../../map.txt";
  
         }
-
-
     }
     public class Level_2 : Field
     {
