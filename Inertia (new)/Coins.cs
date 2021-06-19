@@ -23,7 +23,7 @@ namespace Inertia__new_
 
         public override void MakeMapPicturesBoxes(int i, int j)
         {
-           Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.arrayOfObjects[i, j].pathOfImage);
+           Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.Elements[i, j].pathOfImage);
            Inertia.pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;
         }
     }

@@ -17,13 +17,12 @@ namespace Inertia__new_
             timer1.Interval = 1000;
             timer2.Interval = 1000;
             GenerateMap();
-            //Form1_Closing(Inertia);
            //Play();
             this.KeyDown += new KeyEventHandler(KeyIsUp);
         }
 
-         Level_2 level = new Level_2();
-         Player playerOnThemap = new Player();
+         Level_1 level = new Level_1();
+         Player player = new Player();
 
         static void Play()
         {
@@ -32,7 +31,7 @@ namespace Inertia__new_
         }
         public void GenerateMap()
         { 
-            playerOnThemap.MakeMap(level);
+            player.MakeMap(level);
             pictureBoxes = new PictureBox[Field.height, Field.width];
             for (int i = 0; i < Field.height; i++)
             {
@@ -42,7 +41,7 @@ namespace Inertia__new_
                     pictureBoxes[i, j].Location = new Point(60 * j, i * 60);
                     pictureBoxes[i, j].Size = new Size(54, 36);
 
-                    Field.arrayOfObjects[i, j].MakeMapPicturesBoxes(i, j);
+                    Field.Elements[i, j].MakeMapPicturesBoxes(i, j);
                     this.Controls.Add(pictureBoxes[i, j]);
                 }
               
@@ -52,44 +51,38 @@ namespace Inertia__new_
         {
             if (e.KeyCode == Keys.Up)
             {
-                playerOnThemap.Logic(-1, 0);
+                player.Logic(-1, 0);
             }
             if (e.KeyCode == Keys.Down)
             {
-                playerOnThemap.Logic(1, 0);
+                player.Logic(1, 0);
             }
             if (e.KeyCode == Keys.Left)
             {
-                playerOnThemap.Logic(0, -1);
+                player.Logic(0, -1);
             }
             if (e.KeyCode == Keys.Right)
             {
-                playerOnThemap.Logic(0, 1);
+                player.Logic(0, 1);
             }
             if (e.KeyCode == Keys.D)
             {
-                playerOnThemap.Logic(-1, 1);
+                player.Logic(-1, 1);
 
             }
             if (e.KeyCode == Keys.F)
             {
-                playerOnThemap.Logic(1, -1);
+                player.Logic(1, -1);
             }
             if (e.KeyCode == Keys.G)
             {
-                playerOnThemap.Logic(-1, -1);
+                player.Logic(-1, -1);
             }
             if (e.KeyCode == Keys.H)
             {
-                playerOnThemap.Logic(1, 1);
+                player.Logic(1, 1);
             }
 
-        }
-
-        void Form1_Closing(object sender, CancelEventArgs e)
-        {
-            e.Cancel = true;
-            if (DialogResult.Yes == MessageBox.Show("Вы хотите закончить работу с программой?", " ", MessageBoxButtons.YesNo, MessageBoxIcon.Question)) e.Cancel = false;
         }
 
         public bool CheckLives()

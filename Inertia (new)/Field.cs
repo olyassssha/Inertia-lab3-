@@ -15,14 +15,14 @@ namespace Inertia__new_
 
 
         public char[,] arr;
-        static public Element[,] arrayOfObjects;
+        static public Element[,] Elements;
         
         public char[,] Made()
         {
             using (StreamReader sr = new StreamReader(path))
             {
                 arr = new char[height, width];
-                arrayOfObjects = new Element[height, width];
+                Elements = new Element[height, width];
                 string[] arr2 = new string[height];
                 for (int i = 0; i < height; i++)
                 {
@@ -35,23 +35,23 @@ namespace Inertia__new_
                         arr[i, j] = arr2[i][j];
                         if(arr[i,j] == '%')
                         {
-                            arrayOfObjects[i, j] = new Trap();
+                            Elements[i, j] = new Trap();
                         }
                         if (arr[i, j] == '@')
                         {
-                            arrayOfObjects[i, j] = new Coins();
+                            Elements[i, j] = new Coins();
                         }
                         if (arr[i, j] == '#')
                         {
-                            arrayOfObjects[i, j] = new Barrier();
+                            Elements[i, j] = new Barrier();
                         }
                         if (arr[i, j] == '.')
                         {
-                            arrayOfObjects[i, j] = new Station();
+                            Elements[i, j] = new Station();
                         }
                         if (arr[i, j] == 'I')
                         {
-                            arrayOfObjects[i, j] = new Player();
+                            Elements[i, j] = new Player();
                             Element.playerX = i;
                             Element.playerY = j;
                             Element.X = i;
@@ -59,7 +59,7 @@ namespace Inertia__new_
                         }
                         if (arr[i, j] == ' ')
                         {
-                            arrayOfObjects[i, j] = new Space();
+                            Elements[i, j] = new Space();
                         }
 
                     }
@@ -78,7 +78,7 @@ namespace Inertia__new_
         {
             width = 21;
             height = 9;
-            path = @"../../../../map.txt";
+            path = @"maps/map.txt";
  
         }
     }
@@ -91,7 +91,7 @@ namespace Inertia__new_
         {
             width = 23;
             height = 11;
-            path = @"../../../../map2.txt";
+            path = @"maps/map2.txt";
 
         }
 

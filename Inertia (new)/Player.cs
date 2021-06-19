@@ -27,14 +27,14 @@ namespace Inertia__new_
                    X += x;
                    Y += y;
 
-                if (!Field.arrayOfObjects[X, Y].Logic(x, y)) break;
+                if (!Field.Elements[X, Y].Logic(x, y)) break;
          
            }
             return true;
         }
         public override void MakeMapPicturesBoxes(int i, int j)
         {
-            Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.arrayOfObjects[i, j].pathOfImage);
+            Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.Elements[i, j].pathOfImage);
             Inertia.pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;             
         }
     }
