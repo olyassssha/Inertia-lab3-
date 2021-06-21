@@ -10,7 +10,7 @@ namespace Inertia__new_
     {
         public Barrier()
         {
-            pathOfImage = @"../../../pictures/fence.png";
+            imagePath = @"../../../pictures/fence.png";
         }
         public override bool Logic(int x, int y)
         {
@@ -20,7 +20,7 @@ namespace Inertia__new_
         }
         public override void MakeMapPicturesBoxes(int i, int j)
         {
-            Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.Elements[i, j].pathOfImage);
+            Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.Elements[i, j].imagePath);
             Inertia.pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;
         }
     }

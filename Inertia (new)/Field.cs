@@ -89,10 +89,25 @@ namespace Inertia__new_
 
         public Level_2()
         {
-            width = 23;
+            width = 27;
             height = 11;
             path = @"maps/map2.txt";
 
+        }
+
+
+    }
+    public class Level_3 : Field
+    {
+
+        public string pathOfLevelImages;
+
+        public Level_3()
+        {
+            width = 29;
+            height = 16;
+            path = @"maps/map3.txt";
+          
         }
 
 

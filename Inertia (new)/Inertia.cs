@@ -21,8 +21,9 @@ namespace Inertia__new_
             this.KeyDown += new KeyEventHandler(KeyIsUp);
         }
 
-         Level_1 level = new Level_1();
+         Level_3 level = new Level_3();
          Player player = new Player();
+        
 
         static void Play()
         {
@@ -46,6 +47,16 @@ namespace Inertia__new_
                 }
               
             }
+            label1.Location = new Point(label1.Location.X, label1.Location.Y + 300);
+            label2.Location = new Point(label2.Location.X, label2.Location.Y + 300);
+            label3.Location = new Point(label3.Location.X, label3.Location.Y + 300);
+            label4.Location = new Point(label4.Location.X, label4.Location.Y + 300);
+            label5.Location = new Point(label5.Location.X, label5.Location.Y + 300);
+            label6.Location = new Point(label6.Location.X, label6.Location.Y + 300);
+            label7.Location = new Point(label7.Location.X, label7.Location.Y + 300);
+            label8.Location = new Point(label8.Location.X, label8.Location.Y + 300);
+            label9.Location = new Point(label9.Location.X, label9.Location.Y + 300);
+            label10.Location = new Point(label10.Location.X, label10.Location.Y + 300);
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
@@ -111,7 +122,7 @@ namespace Inertia__new_
         }
         private void BlockInformation_Tick(object sender, EventArgs e)
         {
-            if (CheckLives()) timer1.Enabled = false; timer2.Enabled = false;
+            if (CheckLives()) { timer1.Enabled = false; timer2.Enabled = false; }
             label2.AutoSize = true;
             label2.Text = $"{Element.score}";
 

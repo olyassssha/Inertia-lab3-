@@ -6,7 +6,7 @@ namespace Inertia__new_
 {
   public abstract class Element
   {
-        public string pathOfImage { get; set; }
+        public string imagePath { get; set; }
         abstract public bool Logic(int x, int y);
         abstract public void MakeMapPicturesBoxes(int i, int j);
 

@@ -17,10 +17,11 @@ namespace Inertia__new_
         Inertia inertia = new Inertia();
         Label informationLabel = new Label();
         Label rulesLabel = new Label();
+       
         private void Information_Hover(object sender, EventArgs e)
         {
             information.BackColor = Color.Red;
-            informationLabel.Location = new Point(information.Location.X+80, information.Location.Y+60);
+            informationLabel.Location = new Point(information.Location.X + 80, information.Location.Y + 60);
             informationLabel.AutoSize = true;
             informationLabel.Text = "Операционная система: Windows 7, 32 бит \n" +
                          "Оперативная память: 130 Кб \n" +
@@ -36,9 +37,12 @@ namespace Inertia__new_
         }
         private void Start_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            inertia.Show();
+            level1.Visible = true;
+            level2.Visible = true;
+            level3.Visible = true;
+
         }
+      
         private void Rules_Hover(object sender, EventArgs e)
         {
      
@@ -58,7 +62,12 @@ namespace Inertia__new_
             rulesLabel.Hide();
         }
 
-      
+        private void level1_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            inertia.Show();
+        }
     }
 
 

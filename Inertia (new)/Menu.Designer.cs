@@ -34,6 +34,9 @@ namespace Inertia__new_
             this.headline = new System.Windows.Forms.Label();
             this.rules = new System.Windows.Forms.Button();
             this.fon = new System.Windows.Forms.PictureBox();
+            this.level1 = new System.Windows.Forms.Button();
+            this.level2 = new System.Windows.Forms.Button();
+            this.level3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,10 +98,53 @@ namespace Inertia__new_
             this.fon.TabIndex = 4;
             this.fon.TabStop = false;
             // 
+            // level1
+            // 
+            this.level1.AutoSize = true;
+            this.level1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.level1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.level1.Location = new System.Drawing.Point(1235, 122);
+            this.level1.Name = "level1";
+            this.level1.Size = new System.Drawing.Size(178, 58);
+            this.level1.TabIndex = 5;
+            this.level1.Text = "Уровень 1";
+            this.level1.UseVisualStyleBackColor = false;
+            this.level1.Visible = false;
+            this.level1.Click += new System.EventHandler(this.level1_Click);
+            // 
+            // level2
+            // 
+            this.level2.AutoSize = true;
+            this.level2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.level2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.level2.Location = new System.Drawing.Point(1235, 232);
+            this.level2.Name = "level2";
+            this.level2.Size = new System.Drawing.Size(178, 58);
+            this.level2.TabIndex = 6;
+            this.level2.Text = "Уровень 2";
+            this.level2.UseVisualStyleBackColor = false;
+            this.level2.Visible = false;
+            // 
+            // level3
+            // 
+            this.level3.AutoSize = true;
+            this.level3.BackColor = System.Drawing.SystemColors.Highlight;
+            this.level3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.level3.Location = new System.Drawing.Point(1235, 339);
+            this.level3.Name = "level3";
+            this.level3.Size = new System.Drawing.Size(178, 58);
+            this.level3.TabIndex = 7;
+            this.level3.Text = "Уровень 3";
+            this.level3.UseVisualStyleBackColor = false;
+            this.level3.Visible = false;
+            // 
             // Menu
             // 
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1447, 866);
+            this.Controls.Add(this.level3);
+            this.Controls.Add(this.level2);
+            this.Controls.Add(this.level1);
             this.Controls.Add(this.fon);
             this.Controls.Add(this.rules);
             this.Controls.Add(this.headline);
@@ -108,6 +154,7 @@ namespace Inertia__new_
             this.Text = "Menu";
             ((System.ComponentModel.ISupportInitialize)(this.fon)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -119,6 +166,9 @@ namespace Inertia__new_
         private System.Windows.Forms.Label headline;
         private System.Windows.Forms.Button rules;
         private System.Windows.Forms.PictureBox fon;
+        private System.Windows.Forms.Button level1;
+        private System.Windows.Forms.Button level2;
+        private System.Windows.Forms.Button level3;
     }
 }
 

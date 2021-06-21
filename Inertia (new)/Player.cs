@@ -12,7 +12,7 @@ namespace Inertia__new_
 
         public Player()
         {
-            pathOfImage = @"../../../pictures/player.png";
+            imagePath = @"../../../pictures/player.png";
         }
         public void MakeMap(Field field)
         {
@@ -34,7 +34,7 @@ namespace Inertia__new_
         }
         public override void MakeMapPicturesBoxes(int i, int j)
         {
-            Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.Elements[i, j].pathOfImage);
+            Inertia.pictureBoxes[i, j].Image = Image.FromFile(Field.Elements[i, j].imagePath);
             Inertia.pictureBoxes[i, j].SizeMode = PictureBoxSizeMode.Zoom;             
         }
     }
