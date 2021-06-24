@@ -12,6 +12,7 @@ namespace Inertia__new_
         public static int width;
         public static int height;
         protected string path;
+        public string Information;
 
 
         public char[,] arr;
@@ -21,14 +22,16 @@ namespace Inertia__new_
         {
             using (StreamReader sr = new StreamReader(path))
             {
+                Information = sr.ReadLine();
+                FindInformation();
                 arr = new char[height, width];
                 Elements = new Element[height, width];
                 string[] arr2 = new string[height];
-                for (int i = 0; i < height; i++)
+                for (int i = 0; i < height-1; i++)
                 {
                     arr2[i] = sr.ReadLine();
                 }
-                for (int i = 0; i < height; i++)
+                for (int i = 0; i < height-1; i++)
                 {
                     for (int j = 0; j < width; j++)
                     {
@@ -68,7 +71,14 @@ namespace Inertia__new_
             }
 
         }
-   
+        public void FindInformation()
+        {
+            string[] inf = Information.Split(' ');
+            width = Convert.ToInt32(inf[0]);
+            height = Convert.ToInt32(inf[1]);
+        
+        }
+
 
     }
     public class Level_1 : Field
@@ -76,8 +86,7 @@ namespace Inertia__new_
         public string pathOfLevelImages;
         public Level_1()
         {
-            width = 21;
-            height = 9;
+          
             path = @"maps/map.txt";
  
         }
@@ -89,8 +98,7 @@ namespace Inertia__new_
 
         public Level_2()
         {
-            width = 27;
-            height = 11;
+            
             path = @"maps/map2.txt";
 
         }
@@ -104,10 +112,7 @@ namespace Inertia__new_
 
         public Level_3()
         {
-            width = 29;
-            height = 16;
             path = @"maps/map3.txt";
-          
         }
 
 
