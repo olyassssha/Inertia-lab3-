@@ -14,7 +14,7 @@ namespace Inertia__new_
 
         }
 
-        Inertia inertia = new Inertia();
+       
         Label informationLabel = new Label();
         Label rulesLabel = new Label();
        
@@ -64,7 +64,20 @@ namespace Inertia__new_
 
         private void level1_Click(object sender, EventArgs e)
         {
+            Inertia inertia = new Inertia(1);
+            this.Hide();
+            inertia.Show();
+        }
 
+        private void level2_Click(object sender, EventArgs e)
+        {
+            Inertia inertia = new Inertia(2);
+            this.Hide();
+            inertia.Show();
+        }
+        private void level3_Click(object sender, EventArgs e)
+        {
+            Inertia inertia = new Inertia(3);
             this.Hide();
             inertia.Show();
         }

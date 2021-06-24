@@ -20,8 +20,30 @@ namespace Inertia__new_
            //Play();
             this.KeyDown += new KeyEventHandler(KeyIsUp);
         }
-
-         Level_3 level = new Level_3();
+        public Inertia(int levels)
+        {
+            if(levels == 1)
+            {
+                Level_1 level = new Level_1(); player.MakeMap(level);
+            }
+            if (levels == 2)
+            {
+                Level_2 level = new Level_2(); player.MakeMap(level);
+            }
+            if (levels == 3)
+            {
+                Level_3 level = new Level_3(); player.MakeMap(level);
+            }
+            InitializeComponent();
+            timer1.Enabled = true;
+            timer2.Enabled = true;
+            timer1.Interval = 1000;
+            timer2.Interval = 1000;
+            GenerateMap();
+            //Play();
+            this.KeyDown += new KeyEventHandler(KeyIsUp);
+        }
+       
          Player player = new Player();
         
 
@@ -32,9 +54,9 @@ namespace Inertia__new_
         }
         public void GenerateMap()
         { 
-            player.MakeMap(level);
-            pictureBoxes = new PictureBox[Field.height, Field.width];
-            for (int i = 0; i < Field.height; i++)
+          
+            pictureBoxes = new PictureBox[Field.height-1, Field.width];
+            for (int i = 0; i < Field.height-1; i++)
             {
                 for (int j = 0; j < Field.width; j++)
                 {

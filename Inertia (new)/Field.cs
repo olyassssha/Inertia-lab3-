@@ -25,7 +25,7 @@ namespace Inertia__new_
                 Information = sr.ReadLine();
                 FindInformation();
                 arr = new char[height, width];
-                Elements = new Element[height, width];
+                Elements = new Element[height-1, width];
                 string[] arr2 = new string[height];
                 for (int i = 0; i < height-1; i++)
                 {

@@ -124,6 +124,7 @@ namespace Inertia__new_
             this.level2.Text = "Уровень 2";
             this.level2.UseVisualStyleBackColor = false;
             this.level2.Visible = false;
+            this.level2.Click += new System.EventHandler(this.level2_Click);
             // 
             // level3
             // 
@@ -137,6 +138,7 @@ namespace Inertia__new_
             this.level3.Text = "Уровень 3";
             this.level3.UseVisualStyleBackColor = false;
             this.level3.Visible = false;
+            this.level3.Click += new System.EventHandler(this.level3_Click);
             // 
             // Menu
             // 
